@@ -1,1 +1,1 @@
-# real-world-task-1
+# Data acquisition hands-on
