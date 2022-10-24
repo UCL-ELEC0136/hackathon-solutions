@@ -2,6 +2,9 @@
 
 Fill with exercise description
 
+
+## FAQs
+
 ## References
 - What is a RESTful web API?
   - https://en.wikipedia.org/wiki/Representational_state_transfer
