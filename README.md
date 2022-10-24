@@ -1,5 +1,6 @@
 # Data acquisition Hands-On 1
 
+Fill with exercise description
 
 ## References
 - What is a RESTful web API?
