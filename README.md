@@ -1,6 +1,19 @@
-# Data acquisition Hands-On 1
+# Hackathon 1
 
-Fill with exercise description
+1. Understanding HTTP requests
+
+2. Performing HTTP requests in Python: learn `urlib` or `requests`
+
+3. Using the GitHub API
+  -- what is an entry point 
+  -- what are queries
+  -- how to understand documentation
+
+4. Get all repos
+
+5. Get the commits for each of them, count, mean, std
+
+6. Store this into `mongo`: learn `pymongo` API
 
 
 ## FAQs
