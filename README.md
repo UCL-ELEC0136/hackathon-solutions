@@ -43,7 +43,7 @@ We seek answers to the following questions:
 
 ---
 
-## Constraints
+### Constraints
 For each subtask, you must:
 - Provide a `requirements.txt` file with the required packages
 - Follow the [PEP8](https://peps.python.org/pep-0008/) guidelines for writing code
@@ -55,22 +55,22 @@ For each subtask, you must:
 - Do not solve this at home, this is meant to be solved during class
 
 
-## Advices
+### Advices
 - Follow the [guidelines](https://pip.pypa.io/en/stable/user_guide/#requirements-files) for the requirements file. Do NOT create the file automatically with `pip freeze` or similar, this is NOT recommended
 - Install a code formatter extension in VScode, such as [`black`](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter) or [`autopep8`](https://marketplace.visualstudio.com/items?itemName=himanoa.Python-autopep8). This will allow you to auto-format your code according to PEP8.
 - Take a brief scan to the [GitHub API](https://docs.github.com/en/rest) documentation to be able to orient yourself during the lab
 
 
-## Prerequisites
+### Prerequisites
 - [Miniforge](https://github.com/conda-forge/miniforge) (adviced) or equivalents (e.g., Anaconda)
 - Downlaoded and installed mongodb: https://www.mongodb.com/docs/manual/installation/
 - A working GitHub account
 
 ---
 
-## FAQs
+### FAQs
 
-## References
+### References
 - What is a RESTful web API?
   - https://en.wikipedia.org/wiki/Representational_state_transfer
   - https://www.redhat.com/en/topics/api/what-is-a-rest-api
