@@ -1,4 +1,4 @@
-# Hackathon 1
+# Hackathon #1
 
 Welcome to the first hackathon of UCL-ELEC0136, Data Acquisition and Processing Systems.
 The goal of this laboratory is to understand how to practically interact with RESTful web APIs, how to extract data, store it, and processes it.
