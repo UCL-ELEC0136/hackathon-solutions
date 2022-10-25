@@ -62,7 +62,7 @@ For each subtask, you must:
 
 
 ### Prerequisites
-- [Miniforge](https://github.com/conda-forge/miniforge) (adviced) or equivalents (e.g., Anaconda)
+- [Miniforge](https://github.com/conda-forge/miniforge) (advised) or equivalents (e.g., Anaconda)
 - Downlaoded and installed mongodb: https://www.mongodb.com/docs/manual/installation/
 - A working GitHub account
 
