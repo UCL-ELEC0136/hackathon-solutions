@@ -23,7 +23,7 @@ We seek answers to the following questions:
 - Draw one boxplot for each of these percentile pairs: 5 and 95; 10 and 90; 25 and 75. Check [this](https://stackoverflow.com/questions/27214537/is-it-possible-to-draw-a-matplotlib-boxplot-given-the-percentile-values-instead) on how to personalise boxplots
 
 ### Task 2: Time series
-Now consider the `https://github.com/google/jax` repository.
+Now consider the https://github.com/google/jax repository.
 We ask you to complete the following:
 - Retrieve all the commits
 - Group the commits per day
