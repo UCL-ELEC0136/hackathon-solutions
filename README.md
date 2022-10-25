@@ -30,7 +30,6 @@ We ask you to complete the following:
 - Create a timeseries that shows the number of commits per day
 - Draw a line plot representing the timeseries
 
----
 
 ### Task 3: Classification with hand-designed features
 Now consider the following issue https://github.com/google/jax/issues/5501
@@ -67,6 +66,7 @@ For each subtask, you must:
 - Downlaoded and installed mongodb: https://www.mongodb.com/docs/manual/installation/
 - A working GitHub account
 
+---
 
 ## FAQs
 
