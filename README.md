@@ -11,8 +11,9 @@ Unlike our usual labs, this exercise is designed to test your ability to solve a
 Your starting point is a brief, detailing the tasks we ask you to solve with no initial code.
 Let's dive into it.
 
-## Tasks
-### T1. Aggregated statistics
+---
+
+### Task 1: Aggregated statistics
 Consider the discrete distribution represented by the count of commits in each repository of the https://github.com/google organisation.
 We seek answers to the following questions:
 - What is the repository with the highest number of commits? What the one with the lowest?
@@ -21,7 +22,7 @@ We seek answers to the following questions:
 - Draw a histogram of the distribution
 - Draw one boxplot for each of these percentile pairs: 5 and 95; 10 and 90; 25 and 75. Check [this](https://stackoverflow.com/questions/27214537/is-it-possible-to-draw-a-matplotlib-boxplot-given-the-percentile-values-instead) on how to personalise boxplots
 
-### T2. Time series
+### Task 2: Time series
 Now consider the `https://github.com/google/jax` repository.
 We ask you to complete the following:
 - Retrieve all the commits
@@ -29,7 +30,9 @@ We ask you to complete the following:
 - Create a timeseries that shows the number of commits per day
 - Draw a line plot representing the timeseries
 
-### T3. Classification with hand-designed features
+---
+
+### Task 3: Classification with hand-designed features
 Now consider the following issue https://github.com/google/jax/issues/5501
 We seek answers to the following questions:
 - Is it an open or close issue?
@@ -38,6 +41,8 @@ We seek answers to the following questions:
 - Provide a python dictionary containing two keys:
   - `Question` whose dictionary `value` is the `title` of the issue
   - `Answer` whose dictionary `value` is the answer to the issue question
+
+---
 
 ## Constraints
 For each subtask, you must:
