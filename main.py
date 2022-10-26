@@ -1,4 +1,6 @@
-import task_1, task_2, task_3
+import src.processing
+import src.requesting
+import src.visualising
 
 
 def solve_task1():

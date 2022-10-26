@@ -35,5 +35,9 @@ def boxplot(median, minimum, maximum, q1, q2):
     return fig, ax
 
 
+def lineplot(timeseries):
+    ...
+
+
 def save_figure(fig, path):
     fig.savefig(path, dpi=200)

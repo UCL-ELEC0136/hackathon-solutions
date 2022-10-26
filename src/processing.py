@@ -44,3 +44,7 @@ def statistics(distribution):
         "percentile_90": percentile_90,
         "percentile_95": percentile_95,
     }
+
+
+def group_commits(commits):
+    ...
