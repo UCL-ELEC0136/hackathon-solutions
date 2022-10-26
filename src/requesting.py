@@ -143,3 +143,13 @@ def retrieve_commits(organisation, repository):
     request = request_commits("google", "jax")
     response = paginate(request)
     return response
+
+
+def request_issue_comment(organisation, repository, issue):
+    """See https://docs.github.com/en/rest/issues/comments#list-issue-comments"""
+    ...
+
+
+def request_issue_reactions(organisation, repository, issue):
+    """See https://docs.github.com/en/rest/reactions#list-reactions-for-an-issue"""
+    ...

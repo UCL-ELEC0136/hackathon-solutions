@@ -48,3 +48,17 @@ def statistics(distribution):
 
 def group_commits(commits):
     ...
+
+
+def sort_comments_by_reactions(comments, reactions):
+    ...
+
+
+def get_issue_answer(issue):
+    """
+    Returns:
+        (Dict):{
+            "Question": <issue-title>,
+            "Answer: <comment-with-most--heart-reactions?>,
+            }
+    """
