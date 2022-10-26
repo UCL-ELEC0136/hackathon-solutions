@@ -73,14 +73,12 @@ def paginate(request, per_page=100, max_page=sys.maxsize):
     responses = []
     while True:
         # build request string and send
-        request = str(request) + "?per_page={}&page={}".format(per_page, page)
-        response = send_request(request)
+        page_request = str(request) + "?per_page={}&page={}".format(per_page, page)
+        response = send_request(page_request)
         responses += list(response)
 
         # provide feedback while looping
-        logging.info(
-            "Succesfully performed request {} at page {}".format(request, page)
-        )
+        logging.info("Succesfully performed request {}".format(page_request))
 
         # check for termination and update state
         if len(response) == 0:

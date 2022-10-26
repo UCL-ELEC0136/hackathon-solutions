@@ -1,0 +1,10 @@
+name: daps-hackathon-1
+
+dependencies:
+  - python=3.9
+  - requests
+  - jaxlib
+  - jax
+  - matplotlib
+  - pandas
+  - black
