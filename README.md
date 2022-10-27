@@ -7,7 +7,7 @@ The goal of this laboratory is to provide you with an understanding of how to pr
 At completion, we expect you to have acquired the following skills:
 - Know what a RESTful web API is, and how to interface with it
 - Know how to perform basic storage and retrieval operations with mongodb from Python
-- Being able to setup a pipeline to acquire, process, store and analyse data
+- Being able to set up a pipeline to acquire, process, store and analyse data.
 
 Unlike our usual labs, this exercise is designed to test your ability to solve a problem _ex tempore_.
 Your starting point is a brief, detailing the tasks to solve with no initial code.

@@ -13,23 +13,6 @@ import requests
 GITHUB_API_ENTRYPOINT = "https://api.github.com"
 
 
-def request_repos(organisation):
-    """
-    Creates a string to perform a GET request to GitHub to retrieve repositories in an organisation.
-    The string does not handle pagination.
-
-    Args:
-        organisation (str): the name of the GitHub organisation or username as it appears of GitHub
-
-    Returns:
-        (str): The formatted string as requested at https://docs.github.com/en/rest/repos/repos
-    """
-    # see https://docs.github.com/en/rest/repos/repos
-    request = os.path.join(GITHUB_API_ENTRYPOINT, "orgs", organisation, "repos")
-
-    return request
-
-
 def send_request(request):
     """
     Performs a GET request and returns the response in json format.
@@ -91,7 +74,24 @@ def paginate(request, per_page=100, max_page=sys.maxsize):
     return responses
 
 
-def retrieve_repos(organisation):
+def request_repositories(organisation):
+    """
+    Creates a string to perform a GET request to GitHub to retrieve repositories in an organisation.
+    The string does not handle pagination.
+
+    Args:
+        organisation (str): the name of the GitHub organisation or username as it appears of GitHub
+
+    Returns:
+        (str): The formatted string as requested at https://docs.github.com/en/rest/repos/repos
+    """
+    # see https://docs.github.com/en/rest/repos/repos
+    request = os.path.join(GITHUB_API_ENTRYPOINT, "orgs", organisation, "repos")
+
+    return request
+
+
+def acquire_repositories(organisation):
     """
     Performs a GET request to GitHub to retrieve *all* repositories in an organisation.
     This function handles pagination.
@@ -126,7 +126,7 @@ def request_commits(organisation, repository):
     return request
 
 
-def retrieve_commits(organisation, repository):
+def acquire_commits(organisation, repository):
     """
     Performs a GET request to GitHub to retrieve *all* the commits of repository.
     This function handles pagination.
@@ -148,6 +148,14 @@ def request_issue_comment(organisation, repository, issue):
     ...
 
 
+def retrieve_issue_comment(organisation, repository, issue):
+    ...
+
+
 def request_issue_reactions(organisation, repository, issue):
     """See https://docs.github.com/en/rest/reactions#list-reactions-for-an-issue"""
+    ...
+
+
+def retrieve_issue_reactions(organisation, repository, issue):
     ...

@@ -6,22 +6,30 @@ To solve each task just run `python main.py`.
 import logging
 
 import src.processing
-import src.requesting
+import src.acquiring
 import src.visualising
+import src.storing
 
 
 def solve_task1():
-    repos = src.requesting.retrieve_repos("google")
+    if src.storing.contains_repositories():
+        repos = src.storing.pull_repositories()
+    else:
+        repos = src.acquiring.acquire_repositories("google")
+        src.storing.push_repositories(repos)
+
     stars = {}
     for repo in repos:
         repo_name = repo.get("name", "unknown repo")
         stargazers = repo.get("stargazers_count", 0)
         stars[repo_name] = stargazers
 
-    stats = src.processing.statistics(stars.values())
+    distribution = list(stars.values())
+
+    stats = src.processing.statistics(distribution)
     logging.info("Statistics are the following", stats)
 
-    fig, _ = src.visualising.histogram(stars.values())
+    fig, _ = src.visualising.histogram(distribution)
     src.visualising.save_figure(fig, "stars_histogram.png")
 
     fig, _ = src.visualising.boxplot(

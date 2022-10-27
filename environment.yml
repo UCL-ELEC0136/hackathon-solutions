@@ -7,4 +7,5 @@ dependencies:
     - jax
     - matplotlib
     - pandas
+    - pymongo
     - black
