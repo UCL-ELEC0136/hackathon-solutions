@@ -30,7 +30,8 @@ We seek the answers to the following questions:
 Now consider the https://github.com/google/jax repository.
 We ask you to complete the following:
 - Retrieve all the commits from this repository
-- Store the results into a local mongo database
+- Store the data into a mongo database
+- Retrieve all the commits from mongo, grouping them by date
 - Create a timeseries that shows the number of commits per day
 - Draw a line plot representing the timeseries and save it to disk
 
