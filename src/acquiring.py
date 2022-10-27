@@ -148,7 +148,7 @@ def request_issue_comment(organisation, repository, issue):
     ...
 
 
-def retrieve_issue_comment(organisation, repository, issue):
+def acquire_issue_comment(organisation, repository, issue):
     ...
 
 
@@ -157,5 +157,5 @@ def request_issue_reactions(organisation, repository, issue):
     ...
 
 
-def retrieve_issue_reactions(organisation, repository, issue):
+def acquire_issue_reactions(organisation, repository, issue):
     ...

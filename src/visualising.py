@@ -3,6 +3,7 @@ This module contains methods to create, show and save usefuk plots to visualise 
 """
 
 
+import os
 import matplotlib.pyplot as plt
 
 
@@ -17,7 +18,7 @@ def histogram(data):
     return fig, ax
 
 
-def boxplot(median, minimum, maximum, q1, q2):
+def boxplot(median, minimum, maximum, q1, q3):
     fig, ax = plt.subplots()
     boxes = [
         {
@@ -25,7 +26,7 @@ def boxplot(median, minimum, maximum, q1, q2):
             "whislo": minimum,
             "q1": q1,
             "med": median,
-            "q3": q2,
+            "q3": q3,
             "whishi": maximum,
             "fliers": [],
         }
@@ -40,4 +41,6 @@ def lineplot(timeseries):
 
 
 def save_figure(fig, path):
-    fig.savefig(path, dpi=200)
+    folder = os.path.dirname(path)
+    os.makedirs(folder, exist_ok=True)
+    return fig.savefig(path, dpi=200)
