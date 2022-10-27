@@ -102,7 +102,7 @@ def acquire_repositories(organisation):
     Returns:
         (List[Dict]): the results for all pages of the requests, concatenated in one list
     """
-    request = request_repos("google")
+    request = request_repositories("google")
     response = paginate(request)
     return response
 
