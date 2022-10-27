@@ -50,7 +50,7 @@ We seek answers to the following questions:
 
 ### Constraints
 For each subtask, you must:
-- Provide a `requirements.txt` file with the required packages
+- Provide an `environment.yml` file with the required packages
 - Follow the [PEP8](https://peps.python.org/pep-0008/) guidelines for writing code
 - Use the [GitHub API](https://docs.github.com/en/rest) to acquire any data
 - Use only the `requests` library for performing HTTP requests to the GitHub API through Python, and not any wrapper around that, specifically targeting the GitHub API

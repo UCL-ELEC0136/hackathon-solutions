@@ -17,6 +17,8 @@ def statistics(distribution):
         (Dict): A dictionary containing the following keys and their respective values
             - "mean": The mean of the distribution
             - "std": The standard deviation of the distribution
+            - "min": The minimum of the distribution
+            - "max": THe maximum of the distribution
             - "percentile_5": The 5-percentile of the distribution
             - "percentile_10": The 10-percentile of the distribution
             - "percentile_25": The 25-percentile of the distribution
@@ -27,6 +29,8 @@ def statistics(distribution):
     array = jnp.array(distribution)
     mean = jnp.mean(array)
     std = jnp.std(array)
+    minimum = jnp.min(array)
+    maximum = jnp.max(array)
     percentile_5 = jnp.percentile(array, 5)
     percentile_10 = jnp.percentile(array, 10)
     percentile_25 = jnp.percentile(array, 25)
@@ -37,6 +41,8 @@ def statistics(distribution):
     return {
         "mean": mean,
         "std": std,
+        "min": minimum,
+        "max": maximum,
         "percentile_5": percentile_5,
         "percentile_10": percentile_10,
         "percentile_25": percentile_25,
