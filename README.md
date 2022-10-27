@@ -16,10 +16,10 @@ Let's dive into it.
 ---
 
 ### Task 1: Aggregated statistics
-Consider the discrete distribution represented by the count of commits in each repository of the https://github.com/google organisation.
+Consider the empirical distribution constituted by the number of stargazers (number of stars) for each repository in the https://github.com/google organisation.
 We seek answers to the following questions:
-- What is the repository with the highest number of commits? What the one with the lowest?
-- What is the average number of commits per repo, what its variance?
+- What is the repository with the highest number of stargazers? What the one with the lowest?
+- What is the average number of stargazers per repo, what its variance?
 - What are the 5, 10, 25, 75, 90, and 95 percentile of the distribution?
 - Draw a histogram of the distribution
 - Draw one boxplot for each of these percentile pairs: 5 and 95; 10 and 90; 25 and 75. Check [this](https://stackoverflow.com/questions/27214537/is-it-possible-to-draw-a-matplotlib-boxplot-given-the-percentile-values-instead) on how to personalise boxplots
