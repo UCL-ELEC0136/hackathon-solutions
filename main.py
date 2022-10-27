@@ -55,7 +55,7 @@ def solve_task1():
         stats["min"],
         stats["max"],
         stats["percentile_25"],
-        stats["percentile_74"],
+        stats["percentile_75"],
     )
     src.visualising.save_figure(fig, "stars_boxplot_25-75.png")
 

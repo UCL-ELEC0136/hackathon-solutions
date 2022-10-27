@@ -68,7 +68,7 @@ For each subtask, you must:
 
 ### Prerequisites
 - [Miniforge](https://github.com/conda-forge/miniforge) (advised) or equivalents (e.g., Anaconda)
-- Downlaoded and installed mongodb: https://www.mongodb.com/docs/manual/installation/
+- Create an account for Mongo Atlas: https://www.mongodb.com/atlas/database
 - A working GitHub account
 
 ---

@@ -1,7 +1,7 @@
 import pymongo
 
 
-MONGODB_SERVER_ADDRESS = "mongodb://localhost:27017/"
+MONGODB_SERVER_ADDRESS = "mongodb+srv://{username}:{password}@cluster0.0ryuw.mongodb.net/test"
 DATABASE_NAME = "hackathon"
 REPOSITORIES_COLLECTION_NAME = "repositories"
 COMMITS_COLLECTION_NAME = "commits"
@@ -11,7 +11,8 @@ REACTIONS_COLLECTION_NAME = "reactions"
 
 def get_server():
     # connect to your local mongo instance
-    server = pymongo.MongoClient(MONGODB_SERVER_ADDRESS)
+    address = MONGODB_SERVER_ADDRESS.format(username="student", password="student")
+    server = pymongo.MongoClient(address)
     return server
 
 
