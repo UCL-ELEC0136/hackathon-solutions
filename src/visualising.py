@@ -36,11 +36,14 @@ def boxplot(median, minimum, maximum, q1, q3):
     return fig, ax
 
 
-def lineplot(timeseries):
-    ...
+def lineplot(x, y):
+    fig, ax = plt.subplots()
+    ax.plot(x, y)
+    return fig, ax
 
 
 def save_figure(fig, path):
     folder = os.path.dirname(path)
-    os.makedirs(folder, exist_ok=True)
+    if folder != '':
+        os.makedirs(folder, exist_ok=True)
     return fig.savefig(path, dpi=200)

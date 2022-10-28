@@ -1,7 +1,12 @@
+"""This module omplements a CRUD (Create, Read, Update, Delete) interface to our noSQL database."""
+
+
 import pymongo
 
 
-MONGODB_SERVER_ADDRESS = "mongodb+srv://{username}:{password}@cluster0.0ryuw.mongodb.net/test"
+MONGODB_SERVER_ADDRESS = (
+    "mongodb+srv://{username}:{password}@cluster0.0ryuw.mongodb.net/test"
+)
 DATABASE_NAME = "hackathon"
 REPOSITORIES_COLLECTION_NAME = "repositories"
 COMMITS_COLLECTION_NAME = "commits"
@@ -16,7 +21,7 @@ def get_server():
     return server
 
 
-def push(data, database_name, collection_name):
+def create(data, database_name, collection_name):
     # connect to your local mongo instance
     server = get_server()
     # grab the collection you want to push the data into
@@ -26,12 +31,12 @@ def push(data, database_name, collection_name):
     return collection.insert_many(data)
 
 
-def pull(database_name, collection_name, query={}):
+def read(database_name, collection_name, query):
     # connect to your local mongo instance
     server = get_server()
 
     # retrieve the data in `collection_name` that matches `query`
-    data = server[database_name][collection_name].find(query)
+    data = server[database_name][collection_name].aggregate(query)
 
     return data
 
@@ -61,10 +66,33 @@ def contains_repositories():
     return contains_data(DATABASE_NAME, REPOSITORIES_COLLECTION_NAME)
 
 
-def push_repositories(repos):
-    return push(repos, DATABASE_NAME, REPOSITORIES_COLLECTION_NAME)
+def create_repositories(repos):
+    return create(repos, DATABASE_NAME, REPOSITORIES_COLLECTION_NAME)
 
 
-def pull_repositories():
-    return pull(DATABASE_NAME, REPOSITORIES_COLLECTION_NAME)
+def read_repositories(query=[]):
+    return read(DATABASE_NAME, REPOSITORIES_COLLECTION_NAME, query)
 
+
+def contains_commits():
+    return contains_data(DATABASE_NAME, COMMITS_COLLECTION_NAME)
+
+
+def create_commits(repos):
+    return create(repos, DATABASE_NAME, COMMITS_COLLECTION_NAME)
+
+
+def read_commits(query=[]):
+    return read(DATABASE_NAME, COMMITS_COLLECTION_NAME, query)
+
+
+def read_groupped_commits():
+    query = [
+        {"$addFields": {"date": "$commit.author.date"}},
+        {"$project": {"date": {"$arrayElemAt": [{"$split": ["$date", "T"]}, 0]}}},
+        {"$project": {"date": {"$toDate": "$date"}}},
+        {"$group": {"_id": "$date", "count": {"$sum": 1}}},
+        {"$sort": {"_id": 1}},
+        {"$project": {"date": "$_id", "count": "$count"}}
+    ]
+    return read(DATABASE_NAME, COMMITS_COLLECTION_NAME, query)

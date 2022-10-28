@@ -11,21 +11,25 @@ import requests
 
 
 GITHUB_API_ENTRYPOINT = "https://api.github.com"
+USERNAME = "epignatelli"
 
 
-def send_request(request):
+def send_request(request, auth=None):
     """
     Performs a GET request and returns the response in json format.
     The function stops if any error is encountered during the request process.
 
     Args:
         request (str): the request to perform as a string
+        auth (Tuple[str, str]): GitHub credentials to perform authenticated requests in the form `auth=(username, token)`.
+            Authenticated requests increase API rate limit.
+            See: https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting for more
 
     Returns:
         (List[Dict]): the response in json format as a list of dictionaries
     """
     # perform the request
-    response = requests.get(request)
+    response = requests.get(request, auth=auth)
 
     # check for errors
     response.raise_for_status()
@@ -41,7 +45,7 @@ def send_request(request):
     return response_json
 
 
-def paginate(request, per_page=100, max_page=sys.maxsize):
+def paginate(request, per_page=100, max_page=sys.maxsize, auth=None):
     """
     Resolves GitHub pagination for the `request` of interest, stopping when the response returns no result or when the maximum page is reached.
 
@@ -57,7 +61,7 @@ def paginate(request, per_page=100, max_page=sys.maxsize):
     while True:
         # build request string and send
         page_request = str(request) + "?per_page={}&page={}".format(per_page, page)
-        response = send_request(page_request)
+        response = send_request(page_request, auth=auth)
         responses += list(response)
 
         # provide feedback while looping
@@ -126,7 +130,7 @@ def request_commits(organisation, repository):
     return request
 
 
-def acquire_commits(organisation, repository):
+def acquire_commits(organisation, repository, auth=None):
     """
     Performs a GET request to GitHub to retrieve *all* the commits of repository.
     This function handles pagination.
@@ -139,7 +143,7 @@ def acquire_commits(organisation, repository):
         (List[Dict]): the results for all pages of the requests, concatenated in one list
     """
     request = request_commits("google", "jax")
-    response = paginate(request)
+    response = paginate(request, auth=auth)
     return response
 
 

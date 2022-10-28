@@ -12,12 +12,16 @@ import src.storing
 
 
 def solve_task1():
-    if src.storing.contains_repositories():
-        repos = src.storing.pull_repositories()
-    else:
+    # check if mongo already contains repos
+    # if not, acquire and store
+    if not src.storing.contains_repositories():
         repos = src.acquiring.acquire_repositories("google")
-        src.storing.push_repositories(repos)
+        src.storing.create_repositories(repos)
 
+    # read repos from mongo
+    repos = src.storing.read_repositories()
+
+    # get stargazers count for each repo
     stars = {}
     for repo in repos:
         repo_name = repo.get("name", "unknown repo")
@@ -26,9 +30,11 @@ def solve_task1():
 
     distribution = list(stars.values())
 
+    # calculate the statistics of the distribution
     stats = src.processing.statistics(distribution)
     logging.info("Statistics are the following", stats)
 
+    # plot figures
     fig, _ = src.visualising.histogram(distribution)
     src.visualising.save_figure(fig, "stars_histogram.png")
 
@@ -63,7 +69,24 @@ def solve_task1():
 
 
 def solve_task2():
-    ...
+    # read auth token
+    with open("src/github.token", "r") as f:
+        token = f.read()
+
+    # acquire data if not in mongo
+    if not src.storing.contains_commits():
+        commits = src.acquiring.acquire_commits("google", "jax", auth=(src.acquiring.USERNAME, token))
+        src.storing.create_commits(commits)
+
+    # read commits and group them by day
+    commits = list(src.storing.read_groupped_commits())
+
+    # plot the timeseries
+    x = [d["date"] for d in commits]
+    y = [d["count"] for d in commits]
+    fig, ax = src.visualising.lineplot(x, y)
+    src.visualising.save_figure(fig, "timeseries.png")
+    return
 
 
 def solve_task3():
