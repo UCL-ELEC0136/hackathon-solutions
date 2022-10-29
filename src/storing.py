@@ -1,6 +1,7 @@
 """This module omplements a CRUD (Create, Read, Update, Delete) interface to our noSQL database."""
 
 
+import os
 import pymongo
 
 
@@ -15,8 +16,14 @@ REACTIONS_COLLECTION_NAME = "reactions"
 
 
 def get_server():
+    # load password from disk
+    current_folder = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.join(current_folder, "mongodb.pwd")
+    with open(filepath, "r") as file:
+        password = file.read()
+
     # connect to your local mongo instance
-    address = MONGODB_SERVER_ADDRESS.format(username="student", password="student")
+    address = MONGODB_SERVER_ADDRESS.format(username="student", password=password)
     server = pymongo.MongoClient(address)
     return server
 
@@ -32,6 +39,9 @@ def create(data, database_name, collection_name):
 
 
 def read(database_name, collection_name, query):
+    # handle null inputs
+    query = query or []
+
     # connect to your local mongo instance
     server = get_server()
 
@@ -70,7 +80,7 @@ def create_repositories(repos):
     return create(repos, DATABASE_NAME, REPOSITORIES_COLLECTION_NAME)
 
 
-def read_repositories(query=[]):
+def read_repositories(query=None):
     return read(DATABASE_NAME, REPOSITORIES_COLLECTION_NAME, query)
 
 
@@ -82,7 +92,7 @@ def create_commits(repos):
     return create(repos, DATABASE_NAME, COMMITS_COLLECTION_NAME)
 
 
-def read_commits(query=[]):
+def read_commits(query=None):
     return read(DATABASE_NAME, COMMITS_COLLECTION_NAME, query)
 
 
@@ -93,6 +103,6 @@ def read_groupped_commits():
         {"$project": {"date": {"$toDate": "$date"}}},
         {"$group": {"_id": "$date", "count": {"$sum": 1}}},
         {"$sort": {"_id": 1}},
-        {"$project": {"date": "$_id", "count": "$count"}}
+        {"$project": {"date": "$_id", "count": "$count"}},
     ]
     return read(DATABASE_NAME, COMMITS_COLLECTION_NAME, query)

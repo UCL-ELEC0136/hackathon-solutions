@@ -11,7 +11,8 @@ def statistics(distribution):
     Returns useful statistics on the number of commits for each repository.
 
     Args:
-        distribution (List[int]): a List or Sequence of counts, e.g. the count of commits for each repository.
+        distribution (List[int]): a List or Sequence of counts,
+        e.g. the count of commits for each repository.
 
     Returns:
         (Dict): A dictionary containing the following keys and their respective values
@@ -60,3 +61,4 @@ def get_issue_answer(issue):
             "Answer: <comment-with-most--heart-reactions?>,
             }
     """
+    raise NotImplementedError()

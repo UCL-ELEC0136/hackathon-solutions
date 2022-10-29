@@ -8,42 +8,42 @@ import matplotlib.pyplot as plt
 
 
 def histogram(data):
-    fig, ax = plt.subplots()
-    ax.hist(data)
-    ax.set_title(
+    fig, axes = plt.subplots()
+    axes.hist(data)
+    axes.set_title(
         "Number of commits per repo in the https://github.com/google organisation"
     )
-    ax.set_xlabel("Repository index")
-    ax.set_ylabel("Number of commits")
-    return fig, ax
+    axes.set_xlabel("Repository index")
+    axes.set_ylabel("Number of commits")
+    return fig, axes
 
 
-def boxplot(median, minimum, maximum, q1, q3):
-    fig, ax = plt.subplots()
+def boxplot(median, minimum, maximum, quantile_1, quantile_3):
+    fig, axes = plt.subplots()
     boxes = [
         {
             "label": "Aggregated statistics for the commits in each google repository",
             "whislo": minimum,
-            "q1": q1,
+            "q1": quantile_1,
             "med": median,
-            "q3": q3,
+            "q3": quantile_3,
             "whishi": maximum,
             "fliers": [],
         }
     ]
-    ax.bxp(boxes, showfliers=False)
-    ax.set_ylabel("cm")
-    return fig, ax
+    axes.bxp(boxes, showfliers=False)
+    axes.set_ylabel("cm")
+    return fig, axes
 
 
-def lineplot(x, y):
-    fig, ax = plt.subplots()
-    ax.plot(x, y)
-    return fig, ax
+def lineplot(x_values, y_values):
+    fig, axes = plt.subplots()
+    axes.plot(x_values, y_values)
+    return fig, axes
 
 
 def save_figure(fig, path):
     folder = os.path.dirname(path)
-    if folder != '':
+    if folder != "":
         os.makedirs(folder, exist_ok=True)
     return fig.savefig(path, dpi=200)

@@ -32,7 +32,7 @@ def solve_task1():
 
     # calculate the statistics of the distribution
     stats = src.processing.statistics(distribution)
-    logging.info("Statistics are the following", stats)
+    logging.info("Statistics are the following " + str(stats))
 
     # plot figures
     fig, _ = src.visualising.histogram(distribution)
@@ -65,17 +65,17 @@ def solve_task1():
     )
     src.visualising.save_figure(fig, "stars_boxplot_25-75.png")
 
-    return
-
 
 def solve_task2():
     # read auth token
-    with open("src/github.token", "r") as f:
-        token = f.read()
+    with open("src/github.token", "r") as file:
+        token = file.read()
 
     # acquire data if not in mongo
     if not src.storing.contains_commits():
-        commits = src.acquiring.acquire_commits("google", "jax", auth=(src.acquiring.USERNAME, token))
+        commits = src.acquiring.acquire_commits(
+            "google", "jax", auth=(src.acquiring.USERNAME, token)
+        )
         src.storing.create_commits(commits)
 
     # read commits and group them by day
@@ -84,7 +84,7 @@ def solve_task2():
     # plot the timeseries
     x = [d["date"] for d in commits]
     y = [d["count"] for d in commits]
-    fig, ax = src.visualising.lineplot(x, y)
+    fig, _ = src.visualising.lineplot(x, y)
     src.visualising.save_figure(fig, "timeseries.png")
     return
 
