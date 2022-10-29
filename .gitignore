@@ -1,5 +1,6 @@
 # user-generated tokens
 src/github.token
+src/mongodb.pwd
 *.png
 
 # Byte-compiled / optimized / DLL files
