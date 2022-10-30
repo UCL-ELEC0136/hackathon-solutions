@@ -1,4 +1,4 @@
-"""This module omplements a CRUD (Create, Read, Update, Delete) interface to our noSQL database."""
+"""This module implements a CRUD (Create, Read, Update, Delete) interface to our noSQL database."""
 
 
 import os
