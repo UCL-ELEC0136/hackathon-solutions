@@ -21,6 +21,7 @@ This assignment will not be graded.
 - An account in Mongo Atlas: https://www.mongodb.com/atlas/database
 - A GitHub account
 - A Fine-grained Personal Access Token, 30 days expiration date, public repositories access, no permissions
+- This is a *group* assignments, please form groups of max 3 people
 
 ## Constraints
 For each task, you must:
