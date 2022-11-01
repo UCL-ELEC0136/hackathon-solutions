@@ -1,0 +1,29 @@
+name: Test if the task is solved
+
+on: workflow_dispatch
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Set up dev environment
+      run: |
+        $CONDA/bin/conda env create -f environment.yml
+        $CONDA/bin/activate daps-hackathon
+        pip install pylint
+    - name: Run the main function
+      run: |
+        python main.py
+    - name: Check code quality
+      run: |
+        pip install pylint
+        pylint $(git ls-files '*.py')

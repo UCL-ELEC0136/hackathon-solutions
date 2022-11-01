@@ -123,7 +123,7 @@ def acquire_commits(organisation, repository, auth=None):
     return response
 
 
-def acquire_issue_comment(organisation, repository, issue):
+def acquire_issue_comments(organisation, repository, issue):
     """
     See
     https://docs.github.com/en/rest/issues/comments#list-issue-comments
