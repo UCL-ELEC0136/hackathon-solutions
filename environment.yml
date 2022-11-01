@@ -1,4 +1,4 @@
-name: daps-hackathon-1
+name: daps-hackathon
 
 dependencies:
   - python=3.9
