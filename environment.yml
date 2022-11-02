@@ -2,6 +2,7 @@ name: daps-hackathon
 
 dependencies:
   - python=3.9
+  - pip
   - pip:
     - jaxlib
     - jax

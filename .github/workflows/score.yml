@@ -20,10 +20,13 @@ jobs:
         $CONDA/bin/conda env create -f environment.yml
         $CONDA/bin/activate daps-hackathon
         pip install pylint
+        $CONDA/bin/conda export daps-hackathon
+        $CONDA/bin/conda export
     - name: Run the main function
       run: |
+        $CONDA/bin/conda activate daps-hackathon
         python main.py
     - name: Check code quality
       run: |
-        pip install pylint
+        $CONDA/bin/conda activate daps-hackathon
         pylint $(git ls-files '*.py')
