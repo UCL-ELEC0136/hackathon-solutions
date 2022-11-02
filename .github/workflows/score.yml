@@ -4,24 +4,24 @@ on: workflow_dispatch
 
 jobs:
   build-linux:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latest
     strategy:
       fail-fast: false
       max-parallel: 5
+      matrix:
+        os: ["ubuntu", "windows", "macos"]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+    - uses: conda-incubator/setup-miniconda@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        environment-file: environment.yml
+        miniforge-version: latest
     - name: Set up dev environment
       run: |
-        $CONDA/bin/conda env create -f environment.yml
-        $CONDA/bin/activate daps-hackathon
         pip install pylint
-        $CONDA/bin/conda list
-        $CONDA/bin/conda list -n daps-hackathon
+        conda list
+        conda list -n daps-hackathon
     - name: Write standard credentials to file
       run: |
         echo "assignment" > src/mongodb.pwd
@@ -31,5 +31,5 @@ jobs:
         python main.py
     - name: Check code quality
       run: |
-        $CONDA/bin/conda activate daps-hackathon
+        conda activate daps-hackathon
         pylint $(git ls-files '*.py')
