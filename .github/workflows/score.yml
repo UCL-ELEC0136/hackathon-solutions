@@ -20,8 +20,8 @@ jobs:
         $CONDA/bin/conda env create -f environment.yml
         $CONDA/bin/activate daps-hackathon
         pip install pylint
-        $CONDA/bin/conda export daps-hackathon
-        $CONDA/bin/conda export
+        $CONDA/bin/conda list
+        $CONDA/bin/conda list -n daps-hackathon
     - name: Write standard credentials to file
       run: |
         echo "assignment" > mongodb.pwd
