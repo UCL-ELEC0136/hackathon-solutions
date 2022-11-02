@@ -28,8 +28,6 @@ jobs:
         echo "" > src/github.token
     - name: Run the main function
       run: |
-        $CONDA/bin/conda init
-        $CONDA/bin/conda activate daps-hackathon
         python main.py
     - name: Check code quality
       run: |
