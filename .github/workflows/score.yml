@@ -1,4 +1,4 @@
-name: Test if the task is solved
+name: Score code quality
 
 on: workflow_dispatch
 
@@ -22,6 +22,10 @@ jobs:
         pip install pylint
         $CONDA/bin/conda export daps-hackathon
         $CONDA/bin/conda export
+    - name: Write standard credentials to file
+      run: |
+        echo "assignment" > mongodb.pwd
+        echo "" > github.token
     - name: Run the main function
       run: |
         $CONDA/bin/conda activate daps-hackathon
