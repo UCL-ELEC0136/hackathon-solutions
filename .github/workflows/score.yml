@@ -24,8 +24,8 @@ jobs:
         $CONDA/bin/conda list -n daps-hackathon
     - name: Write standard credentials to file
       run: |
-        echo "assignment" > mongodb.pwd
-        echo "" > github.token
+        echo "assignment" > src/mongodb.pwd
+        echo "" > src/github.token
     - name: Run the main function
       run: |
         $CONDA/bin/conda activate daps-hackathon
