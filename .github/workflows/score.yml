@@ -1,6 +1,10 @@
 name: Score code quality
 
-on: workflow_dispatch
+on:
+  workflow_dispatch
+  push:
+    branches:
+      - feedback
 
 jobs:
   score-code:
