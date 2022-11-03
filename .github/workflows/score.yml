@@ -26,6 +26,7 @@ jobs:
       run: |
         echo "student\nassignment" > src/mongodb.pwd
         echo ${{ secrets.GITHUB_TOKEN }} > src/github.token
+        cat src/mongodb.pwd
     - name: Run the code
       run: |
         conda info --envs
