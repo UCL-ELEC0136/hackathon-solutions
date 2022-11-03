@@ -20,10 +20,10 @@ def get_server():
     current_folder = os.path.dirname(os.path.abspath(__file__))
     filepath = os.path.join(current_folder, "mongodb.pwd")
     with open(filepath, "r") as file:
-        password = file.read()
+        password = file.read().splitlines()
 
     # connect to your local mongo instance
-    address = MONGODB_SERVER_ADDRESS.format(username="student", password=password).strip()
+    address = MONGODB_SERVER_ADDRESS.format(username="student", password=password)
     server = pymongo.MongoClient(address)
     return server
 
