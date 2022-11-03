@@ -26,7 +26,6 @@ jobs:
       run: |
         conda info --envs
         conda env list
-        conda activate daps-hackathon
         conda list
         python main.py
     - name: Check code quality
