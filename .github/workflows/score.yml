@@ -18,6 +18,7 @@ jobs:
         miniforge-version: latest
         environment-file: environment.yml
         activate-environment: daps-hackathon
+        auto-activate-base: false
     - name: Write standard credentials to file
       run: |
         echo "assignment" > src/mongodb.pwd
