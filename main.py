@@ -69,7 +69,7 @@ def solve_task1():
 def solve_task2():
     # read auth token
     with open("src/github.token", "r") as file:
-        token = file.read().splitlines()
+        token = file.read().splitlines()[0]
 
     # acquire data if not in mongo
     if not src.storing.contains_commits():

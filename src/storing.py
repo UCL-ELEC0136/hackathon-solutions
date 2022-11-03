@@ -15,15 +15,24 @@ COMMENTS_COLLECTION_NAME = "comments"
 REACTIONS_COLLECTION_NAME = "reactions"
 
 
-def get_server():
-    # load password from disk
-    current_folder = os.path.dirname(os.path.abspath(__file__))
-    filepath = os.path.join(current_folder, "mongodb.pwd")
-    with open(filepath, "r") as file:
-        password = file.read().splitlines()
+def get_mongo_credentials(filepath=None):
+    if filepath is None:
+        current_folder = os.path.dirname(os.path.abspath(__file__))
+        filepath = os.path.join(current_folder, "mongodb.pwd")
 
+    # load password from disk
+    with open(filepath, "r") as file:
+        credentials = file.read().splitlines()
+
+    username = credentials[0]
+    password = credentials[1]
+    return username, password
+
+
+def get_server(credentials_filepath=None):
+    username, password = get_mongo_credentials(credentials_filepath)
     # connect to your local mongo instance
-    address = MONGODB_SERVER_ADDRESS.format(username="student", password=password)
+    address = MONGODB_SERVER_ADDRESS.format(username=username, password=password)
     server = pymongo.MongoClient(address)
     return server
 
