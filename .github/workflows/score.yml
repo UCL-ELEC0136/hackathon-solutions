@@ -17,6 +17,7 @@ jobs:
       max-parallel: 5
       matrix:
         os: ["ubuntu", "windows", "macos"]
+    continue-on-error: true
 
     steps:
     - uses: actions/checkout@v2
