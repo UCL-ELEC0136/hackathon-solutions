@@ -24,7 +24,7 @@ jobs:
         auto-activate-base: false
     - name: Write standard credentials to file
       run: |
-        echo "assignment" > src/mongodb.pwd
+        echo "student\nassignment" > src/mongodb.pwd
         echo ${{ secrets.GITHUB_TOKEN }} > src/github.token
     - name: Run the code
       run: |
