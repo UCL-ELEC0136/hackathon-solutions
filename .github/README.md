@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/UCL-ELEC0136/hackathon/main/README.md
+https://github.com/UCL-ELEC0136/hackathon/blob/main/README.md
