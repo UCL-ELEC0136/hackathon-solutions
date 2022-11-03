@@ -17,20 +17,19 @@ jobs:
       with:
         miniforge-version: latest
         environment-file: environment.yml
-        activate-environment: hackathon-solutions
-    - name: Set up dev environment
-      run: |
-        pip install pylint
-        conda info
-        conda env list
-        conda list
+        activate-environment: daps-hackathon
     - name: Write standard credentials to file
       run: |
         echo "assignment" > src/mongodb.pwd
         echo "" > src/github.token
-    - name: Run the main function
+    - name: Run the code
       run: |
+        conda info --envs
+        conda env list
+        conda activate daps-hackathon
+        conda list
         python main.py
     - name: Check code quality
       run: |
+        pip install pylint
         pylint $(git ls-files '*.py')
