@@ -5,6 +5,9 @@ on: workflow_dispatch
 jobs:
   score-code:
     runs-on: ${{ matrix.os }}-latest
+    defaults:
+      run:
+        shell: bash -l {0}
     strategy:
       fail-fast: false
       max-parallel: 5
@@ -16,25 +19,20 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
       with:
         miniforge-version: latest
+        environment-file: environment.yml
+        activate-environment: daps-hackathon
+        auto-activate-base: false
     - name: Write standard credentials to file
       run: |
         echo "assignment" > src/mongodb.pwd
         echo ${{ secrets.GITHUB_TOKEN }} > src/github.token
     - name: Run the code
-      with:
-        environment-file: environment.yml
-        activate-environment: daps-hackathon
-        auto-activate-base: false
       run: |
         conda info --envs
         conda env list
         conda list
         python main.py
     - name: Check code quality
-      with:
-        environment-file: environment.yml
-        activate-environment: daps-hackathon
-        auto-activate-base: false
       run: |
         pip install pylint
         pylint $(git ls-files '*.py')
