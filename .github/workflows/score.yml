@@ -30,9 +30,9 @@ jobs:
     - name: Check code quality
       run: |
         pip install pylint
-        OUTPUT=$(pylint $(git ls-files '*.py' --exit-zero))
+        OUTPUT=$(pylint $(git ls-files '*.py') ||:)
         echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
-    - name: Post result to PR
+    - name: Report result in the PR
       uses: mshick/add-pr-comment@v1
       with:
         message: ${{ env.MESSAGE }}
