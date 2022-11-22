@@ -38,6 +38,8 @@ jobs:
         MESSAGE: $OUTPUT
 
     - name: Collecting PR to post to
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
         echo "issue=$issue" >> $GITHUB_OUTPUT
