@@ -35,9 +35,11 @@ jobs:
       run: |
         pip install pylint
         MESSAGE=$(pylint $(git ls-files '*.py') ||:)
-        echo "MESSAGE=$MESSAGE" >> $GITHUB_ENV
-        echo "Printing PR message: \n $MESSAGE"
-        echo "Printing GITHUB_ENV: \n $GITHUB_ENV"
+        echo 'MESSAGE<<EOF' >> $GITHUB_ENV
+        $MESSAGE >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+        echo "Printing PR message: $MESSAGE"
+        echo "Printing GITHUB_ENV: $GITHUB_ENV"
 
     - uses: mshick/add-pr-comment@v2
       with:
