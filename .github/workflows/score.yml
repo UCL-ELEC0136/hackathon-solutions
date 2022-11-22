@@ -31,10 +31,13 @@ jobs:
         auto-activate-base: false
 
     - name: Check code quality
+      id: linting
       run: |
         pip install pylint
         MESSAGE=$(pylint $(git ls-files '*.py') ||:)
-        echo $GITHUB_ENV
+        echo "MESSAGE=$MESSAGE" >> $GITHUB_ENV
+        echo "Printing PR message: \n $MESSAGE"
+        echo "Printing GITHUB_ENV: \n $GITHUB_ENV"
 
     - uses: mshick/add-pr-comment@v2
       with:
