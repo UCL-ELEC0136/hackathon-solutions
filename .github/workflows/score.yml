@@ -43,13 +43,13 @@ jobs:
       run: |
         issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
         echo "issue=$issue" >> $GITHUB_OUTPUT
+        echo $GITHUB_OUTPUT
 
-    - uses: mshick/add-pr-comment@v2
+    - uses: mshick/add-pr-comment@v1
       with:
         message: ${{ env.MESSAGE }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
-        allow-repeats: false # This is the default
 
     - name: Check for reproducibility
       run: |
