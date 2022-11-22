@@ -34,15 +34,13 @@ jobs:
       run: |
         pip install pylint
         OUTPUT=$(pylint $(git ls-files '*.py') ||:)
-        echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
+      env:
+        MESSAGE: $OUTPUT
 
     - name: Search for feedback pull request
-      - id: pr
         run: |
           issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
           echo "issue=$issue" >> $GITHUB_OUTPUT
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - uses: mshick/add-pr-comment@v2
       with:
