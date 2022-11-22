@@ -37,10 +37,10 @@ jobs:
       env:
         MESSAGE: $OUTPUT
 
-    - name: Search for feedback pull request
-        run: |
-          issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
-          echo "issue=$issue" >> $GITHUB_OUTPUT
+    - name: Collecting PR to post to
+      run: |
+        issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
+        echo "issue=$issue" >> $GITHUB_OUTPUT
 
     - uses: mshick/add-pr-comment@v2
       with:
