@@ -31,25 +31,29 @@ jobs:
         auto-activate-base: false
 
     - name: Check code quality
+      id: linting
       run: |
         pip install pylint
-        OUTPUT=$(pylint $(git ls-files '*.py') ||:)
-      env:
-        MESSAGE: $OUTPUT
+        MESSAGE=$(pylint -ry $(git ls-files '*.py') ||:)
 
-    - name: Collecting PR to post to
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
-        echo "issue=$issue" >> $GITHUB_OUTPUT
-        echo $GITHUB_OUTPUT
+        echo 'MESSAGE<<EOF' >> $GITHUB_ENV
+        echo "<pre><code>$MESSAGE</code></pre>" >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
 
-    - uses: mshick/add-pr-comment@v1
+        echo "Printing PR message: $MESSAGE"
+
+    - name: Post report to pull request
+      uses: mshick/add-pr-comment@v2
       with:
+        issue: 1
         message: ${{ env.MESSAGE }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+
+    - name: Write standard credentials to file
+      run: |
+        echo -e "student\nassignment" > src/mongodb.pwd
+        echo ${{ secrets.GITHUB_TOKEN }} > src/github.token
+        cat src/mongodb.pwd
 
     - name: Check for reproducibility
       run: |
