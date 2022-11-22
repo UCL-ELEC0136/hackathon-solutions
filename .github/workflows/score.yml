@@ -20,25 +20,37 @@ jobs:
     continue-on-error: true
 
     steps:
+
     - uses: actions/checkout@v2
+
     - uses: conda-incubator/setup-miniconda@v2
       with:
         miniforge-version: latest
         environment-file: environment.yml
         activate-environment: daps-final
         auto-activate-base: false
+
     - name: Check code quality
       run: |
         pip install pylint
-        OUTPUT=$(pylint $(git ls-files '*.py' --exit-zero))
-        echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
-    - name: Post result to PR
-      uses: mshick/add-pr-comment@v1
+        OUTPUT=$(pylint $(git ls-files '*.py') ||:)
+      env:
+        MESSAGE: $OUTPUT
+
+    - name: Collecting PR to post to
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
+        echo "issue=$issue" >> $GITHUB_OUTPUT
+        echo $GITHUB_OUTPUT
+
+    - uses: mshick/add-pr-comment@v1
       with:
         message: ${{ env.MESSAGE }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
-        allow-repeats: false # This is the default
+
     - name: Check for reproducibility
       run: |
         conda info --envs
