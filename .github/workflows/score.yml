@@ -33,8 +33,8 @@ jobs:
     - name: Check code quality
       run: |
         pip install pylint
-        OUTPUT=$(pylint $(git ls-files '*.py') ||:)
-        echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
+        MESSAGE=$(pylint $(git ls-files '*.py') ||:)
+        echo $GITHUB_ENV
 
     - uses: mshick/add-pr-comment@v2
       with:
