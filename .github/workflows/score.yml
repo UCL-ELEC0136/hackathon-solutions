@@ -34,8 +34,7 @@ jobs:
       run: |
         pip install pylint
         OUTPUT=$(pylint $(git ls-files '*.py') ||:)
-      env:
-        MESSAGE: $OUTPUT
+        echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
 
     - uses: mshick/add-pr-comment@v2
       with:
