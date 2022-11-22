@@ -49,6 +49,12 @@ jobs:
         message: ${{ env.MESSAGE }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Write standard credentials to file
+      run: |
+        echo -e "student\nassignment" > src/mongodb.pwd
+        echo ${{ secrets.GITHUB_TOKEN }} > src/github.token
+        cat src/mongodb.pwd
+
     - name: Check for reproducibility
       run: |
         conda info --envs
