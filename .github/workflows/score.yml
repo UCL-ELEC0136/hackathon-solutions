@@ -37,9 +37,7 @@ jobs:
         MESSAGE=$(pylint -ry $(git ls-files '*.py') ||:)
 
         echo 'MESSAGE<<EOF' >> $GITHUB_ENV
-        echo '<code>' >> $GITHUB_ENV
-        echo -e $MESSAGE >> $GITHUB_ENV
-        echo `'</code>' >> $GITHUB_ENV
+        echo "<code>$MESSAGE</code>" >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
 
         echo "Printing PR message: $MESSAGE"
