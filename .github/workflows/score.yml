@@ -37,19 +37,11 @@ jobs:
       env:
         MESSAGE: $OUTPUT
 
-    - name: Collecting PR to post to
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
-        echo "issue=$issue" >> $GITHUB_OUTPUT
-        echo $GITHUB_OUTPUT
-
-    - uses: mshick/add-pr-comment@v1
+    - uses: mshick/add-pr-comment@v2
       with:
+        issue: 1
         message: ${{ env.MESSAGE }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
 
     - name: Check for reproducibility
       run: |
